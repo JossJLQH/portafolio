@@ -1,7 +1,5 @@
-/* Variables y reseteo base */
 :root {
-  --bg-dark: #0f172a;
-  --card-bg: #1e293b;
+  --bg-dark: #090d16;
   --text-primary: #f8fafc;
   --text-muted: #94a3b8;
 
@@ -10,7 +8,7 @@
   --linkedin-bright: #0a66c2;
   --linkedin-glow: rgba(10, 102, 194, 0.6);
 
-  --github-dim: rgba(255, 255, 255, 0.06);
+  --github-dim: rgba(255, 255, 255, 0.08);
   --github-bright: #f0f6fc;
   --github-glow: rgba(240, 246, 252, 0.4);
 }
@@ -26,127 +24,197 @@ body {
   background-color: var(--bg-dark);
   color: var(--text-primary);
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
+  overflow-x: hidden;
 }
 
-.card-container {
+/* Fondo a pantalla completa con luces tenues ambientales */
+.hero {
+  min-height: 100vh;
   width: 100%;
-  max-width: 380px;
-}
-
-.profile-card {
-  background-color: var(--card-bg);
-  padding: 40px 28px;
-  border-radius: 20px;
-  text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.4);
-}
-
-/*.avatar {
-  width: 72px;
-  height: 72px;
-  margin: 0 auto 18px auto;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 28px;
-  color: white;
+  padding: 40px 20px;
+  position: relative;
+  background: 
+    radial-gradient(circle at 50% 20%, rgba(56, 189, 248, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.08) 0%, transparent 50%);
 }
-*/
 
+.hero-content {
+  max-width: 720px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Foto de perfil expandida */
 .avatar {
-  width: 75px;  /* Ajustamos el tamaño a tu gusto */
-  height: 96px;
-  margin: 0 auto 18px auto;
+  width: 90px;
+  height: 120px;
+  margin-bottom: 24px;
   border-radius: 50%;
-  overflow: hidden; /* Corta los bordes sobrantes para que quede circular */
-  border: 2px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  border: 3px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 35px rgba(56, 189, 248, 0.25);
+  transition: transform 0.3s ease;
+}
+
+.avatar:hover {
+  transform: scale(1.05);
 }
 
 .avatar-img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Evita que la foto se distorsione o aplaste */
+  object-fit: cover;
   display: block;
 }
 
+/* Tipografía fluida (se adapta al tamaño de la pantalla) */
 .name {
-  font-size: 1.75rem;
-  font-weight: 700;
-  margin-bottom: 4px;
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+
+/* Gradiente en tu nombre 
+.highlight {
+  background: linear-gradient(135deg, #38bdf8, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+*/
+
+/* Gradiente en tu nombre (Sin advertencias de linter) */
+.highlight {
+  background: linear-gradient(135deg, #38bdf8, #8b5cf6);
+  background-clip: text;             /* Propiedad estándar */
+  -webkit-background-clip: text;     /* Soporte para WebKit/Safari */
+  -webkit-text-fill-color: transparent;
 }
 
 .tagline {
   color: #38bdf8;
-  font-size: 0.9rem;
+  font-size: clamp(1rem, 2vw, 1.25rem);
   font-weight: 600;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
 .bio {
   color: var(--text-muted);
-  font-size: 0.9rem;
-  line-height: 1.5;
-  margin-bottom: 28px;
+  font-size: clamp(1rem, 2.2vw, 1.15rem);
+  line-height: 1.7;
+  margin-bottom: 36px;
+  max-width: 600px;
 }
 
+/* Botones circulares adaptados al nuevo tamaño */
 .social-links {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 24px;
 }
 
-/* Estilo base para botones 100% redondos */
 .btn {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%; /* Esto hace que el botón sea un círculo perfecto */
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.35rem;
+  font-size: 1.5rem;
   text-decoration: none;
-  /* Transición suave de color, brillo y elevación */
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid transparent;
 }
 
-/* LinkedIn - Estado Apagado */
+/* LinkedIn */
 .btn-linkedin {
   background-color: var(--linkedin-dim);
   color: #64748b;
-  border-color: rgba(10, 102, 194, 0.2);
+  border-color: rgba(10, 102, 194, 0.25);
 }
 
-/* LinkedIn - Estado Iluminado (Hover) */
 .btn-linkedin:hover {
   background-color: var(--linkedin-bright);
   color: #ffffff;
-  transform: translateY(-4px) scale(1.08);
-  box-shadow: 0 0 24px var(--linkedin-glow);
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 0 30px var(--linkedin-glow);
   border-color: var(--linkedin-bright);
 }
 
-/* GitHub - Estado Apagado */
+/* GitHub */
 .btn-github {
   background-color: var(--github-dim);
   color: #64748b;
-  border-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
-/* GitHub - Estado Iluminado (Hover) */
 .btn-github:hover {
   background-color: #24292e;
   color: #ffffff;
-  transform: translateY(-4px) scale(1.08);
-  box-shadow: 0 0 24px var(--github-glow);
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 0 30px var(--github-glow);
   border-color: var(--github-bright);
+}
+
+/* ==========================================
+   Sección de Tecnologías & Habilidades
+   ========================================== */
+.skills-section {
+  margin-top: 48px;
+  width: 100%;
+}
+
+.skills-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.skill-tag {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #e2e8f0;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.skill-tag i {
+  color: #38bdf8;
+  font-size: 1rem;
+}
+
+/* Efecto Hover tenue al pasar el ratón */
+.skill-tag:hover {
+  background: rgba(56, 189, 248, 0.1);
+  border-color: rgba(56, 189, 248, 0.4);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(56, 189, 248, 0.2);
 }
